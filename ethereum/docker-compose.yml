@@ -7,7 +7,7 @@ services:
       ./
     container_name: eos_docker_tools
     ports:
-      - 8545:8545
+      - 8555:8545
     expose:
       - 30303
       - 30303/udp

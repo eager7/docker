@@ -17,4 +17,4 @@ COPY --from=eth_builder /go/src/github.com/ethereum/go-ethereum/build/bin/* /usr
 
 EXPOSE 8545 8546 30303 30303/udp
 
-ENTRYPOINT ["geth", "--rpc", "--rpcapi \"db,eth,net,web3,personal\""]
+ENTRYPOINT ["geth", "--rpc", "--rpcapi", "db,eth,net,web3,personal"]

@@ -5,17 +5,17 @@ repository:="plainchant/ethereum:golang"
 default: all
 
 all:
-	docker build -t ${repository} ./
+	docker-compose build 
 
 builder:
 	docker build --target builder -t eth_builder:v1 ./
 
 run:
-	docker run -p 13141:13141 --name eos_docker_tools ${repository}
+	docker-compose up 
 
 clean:
-	docker stop eos_docker_tools
-	docker rm eos_docker_tools
+	docker-compose stop
+	docker-compose rm
 
 dist_clean:
 	-docker rmi $$(docker images | grep "none" | awk '{print $$3}')

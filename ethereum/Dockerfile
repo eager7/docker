@@ -29,4 +29,4 @@ EXPOSE 8545 8546 30303 30303/udp
 
 RUN geth --datadir /ethereum init /ethereum/genesis.json
 
-ENTRYPOINT ["geth --networkid 13141 --datadir /ethereum --rpc --rpcapi db,eth,net,web3,personal"]
+ENTRYPOINT [""]

@@ -11,3 +11,4 @@ services:
     ports:
       - 8555:8545
       - 30304:30303
+    command: geth --networkid 13141 --datadir /ethereum --rpc --rpcapi db,eth,net,web3,personal

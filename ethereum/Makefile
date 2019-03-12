@@ -22,5 +22,5 @@ dist_clean:
 	-docker rm `docker ps -a -q`
 	-docker rmi $$(docker images | grep "none" | awk '{print $$3}')
 	-docker rmi ${repository}
-	-docker rmi eth_builder:v1
+	#-docker rmi eth_builder:v1
 

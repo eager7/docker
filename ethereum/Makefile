@@ -6,13 +6,13 @@ name:=ethereum_private
 default: all
 
 all:
-	docker build  -t repository ./
+	docker build  -t ${repository} ./
 
 builder:
 	docker build --target builder -t eth_builder:v1 ./
 
 run:
-	docker run -d --name ${name} -port 8555:8545 geth --networkid 13141 --datadir /ethereum --rpc --rpcapi db,eth,net,web3,personal
+	docker run -d -p 8555:8545 --name ${name} ${repository} geth --networkid 13141 --datadir /ethereum --rpc --rpcapi db,eth,net,web3,personal
 
 clean:
 	docker stop ${name}

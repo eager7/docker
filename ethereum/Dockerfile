@@ -20,7 +20,7 @@ VOLUME /home/plainchant/docker:/ethereum
 
 RUN apk add --no-cache ca-certificates
 
-COPY --from=eth_builder /go/src/github.com/ethereum/go-ethereum/genesis.json /ethereum/
+COPY --from=eth_builder /go/src/github.com/ethereum/genesis.json /ethereum/
 
 COPY --from=eth_builder /go/src/github.com/ethereum/go-ethereum/build/bin/* /usr/local/bin/
 

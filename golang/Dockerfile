@@ -18,4 +18,4 @@ WORKDIR /root/
 
 COPY --from=0 /go/src/github.com/go/helloworld/app .
 
-CMD ["./app"]
+CMD [""]

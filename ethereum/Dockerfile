@@ -16,10 +16,9 @@ FROM alpine:latest
 
 WORKDIR /ethereum/
 
-VOLUME /ethereum/
+#VOLUME /ethereum/
 
-RUN apk add --no-cache ca-certificates \
-    && chmod 777 /ethereum/ -R
+RUN apk add --no-cache ca-certificates
 
 COPY --from=eth_builder /go/src/github.com/ethereum/genesis.json /ethereum/
 

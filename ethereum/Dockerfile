@@ -7,7 +7,7 @@ WORKDIR /go/src/github.com/ethereum/
 
 RUN git clone -v https://github.com/ethereum/go-ethereum && cd /go/src/github.com/ethereum/go-ethereum && make all
 
-RUN wget https://gist.githubusercontent.com/eager7/f766c7f8e2c0a69a0badb8769ab79cd8/raw/d229eacd65df8255a9faf43c3889126aece9b289/genesis.json > /genesis.josn
+RUN wget https://gist.githubusercontent.com/eager7/f766c7f8e2c0a69a0badb8769ab79cd8/raw/d229eacd65df8255a9faf43c3889126aece9b289/genesis.json
 
 ENTRYPOINT [""]
 
@@ -18,7 +18,7 @@ WORKDIR /ethereum/
 
 RUN apk add --no-cache ca-certificates \
 
-COPY --from=eth_builder /genesis.json /ethereum/
+COPY --from=eth_builder /go/src/github.com/ethereum/go-ethereum/genesis.json /ethereum/
 COPY --from=eth_builder /go/src/github.com/ethereum/go-ethereum/build/bin/* /usr/local/bin/
 
 RUN geth init /ethereum/genesis.json

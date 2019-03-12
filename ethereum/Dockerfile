@@ -25,4 +25,6 @@ COPY --from=eth_builder /go/src/github.com/ethereum/go-ethereum/build/bin/* /usr
 
 EXPOSE 8545 8546 30303 30303/udp
 
+RUN geth init /ethereum/genesis.json
+
 ENTRYPOINT [""]

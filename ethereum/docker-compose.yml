@@ -6,6 +6,8 @@ services:
     build:
       ./
     container_name: eos_docker_tools
+    volumes:
+      - ./:/ethereum
     ports:
       - 8555:8545
     expose:

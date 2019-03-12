@@ -16,8 +16,6 @@ FROM alpine:latest
 
 WORKDIR /ethereum/
 
-VOLUME /home/plainchant/docker:/ethereum
-
 RUN apk add --no-cache ca-certificates
 
 COPY --from=eth_builder /go/src/github.com/ethereum/genesis.json /ethereum/

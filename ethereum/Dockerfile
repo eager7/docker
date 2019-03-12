@@ -7,19 +7,24 @@ WORKDIR /go/src/github.com/ethereum/
 
 RUN git clone -v https://github.com/ethereum/go-ethereum && cd /go/src/github.com/ethereum/go-ethereum && make all
 
+RUN wget https://gist.githubusercontent.com/eager7/f766c7f8e2c0a69a0badb8769ab79cd8/raw/d229eacd65df8255a9faf43c3889126aece9b289/genesis.json > /genesis.josn
+
 ENTRYPOINT [""]
 
 # Pull all binaries into a second stage deploy alpine container
 FROM alpine:latest
 
-WORKDIR /
+WORKDIR /ethereum/
 
-RUN apk add --no-cache ca-certificates curl \
-    && curl -s -H 'Cache-Control: no-cache' https://gist.githubusercontent.com/eager7/f766c7f8e2c0a69a0badb8769ab79cd8/raw/d229eacd65df8255a9faf43c3889126aece9b289/genesis.json > genesis.josn
+RUN apk add --no-cache ca-certificates \
+
+COPY --from=eth_builder /genesis.json /ethereum/
 COPY --from=eth_builder /go/src/github.com/ethereum/go-ethereum/build/bin/* /usr/local/bin/
 
-RUN geth init genesis.json
+RUN geth init /ethereum/genesis.json
+
+VOLUME /home/plainchant/docker:/ethereum
 
 EXPOSE 8545 8546 30303 30303/udp
 
-ENTRYPOINT ["geth", "--rpc", "--rpcapi", "db,eth,net,web3,personal"]
+ENTRYPOINT ["geth", "--datadir", "/ethereum", "--rpc", "--rpcapi", "db,eth,net,web3,personal"]

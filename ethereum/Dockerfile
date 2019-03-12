@@ -16,6 +16,8 @@ FROM alpine:latest
 
 WORKDIR /ethereum/
 
+VOLUME /home/plainchant/docker:/ethereum
+
 RUN apk add --no-cache ca-certificates
 
 COPY --from=eth_builder /go/src/github.com/ethereum/go-ethereum/genesis.json /ethereum/
@@ -23,8 +25,6 @@ COPY --from=eth_builder /go/src/github.com/ethereum/go-ethereum/genesis.json /et
 COPY --from=eth_builder /go/src/github.com/ethereum/go-ethereum/build/bin/* /usr/local/bin/
 
 RUN geth init /ethereum/genesis.json
-
-VOLUME /home/plainchant/docker:/ethereum
 
 EXPOSE 8545 8546 30303 30303/udp
 

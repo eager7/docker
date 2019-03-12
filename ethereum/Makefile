@@ -12,11 +12,11 @@ builder:
 	docker build --target builder -t eth_builder:v1 ./
 
 run:
-	docker run -d -name $name -port 8555:8545 geth --networkid 13141 --datadir /ethereum --rpc --rpcapi db,eth,net,web3,personal
+	docker run -d -name ${name} -port 8555:8545 geth --networkid 13141 --datadir /ethereum --rpc --rpcapi db,eth,net,web3,personal
 
 clean:
-	docker stop $name
-	docker rm $name
+	docker stop ${name}
+	docker rm ${name}
 
 dist_clean:
 	-docker stop `docker ps -a -q`

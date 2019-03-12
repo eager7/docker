@@ -19,3 +19,30 @@ Creating eos_docker_tools ... done
 /ethereum # geth attach --datadir /ethereum/ 
 ```
 查询状态：
+```bash
+> eth.mining
+false
+```
+创建账户并开启挖矿：
+```bash
+> personal.newAccount("eospark")
+"0xade1fafd8b3f0c902b06dfac9bf9186c3d5a3a3b"
+> miner.start(1)
+null
+```
+查看log：
+```bash
+NFO [03-12|08:56:25.359] ð¨ mined potential block                  number=1 hash=471807…c06828
+INFO [03-12|08:56:25.360] Commit new mining work                   number=2 sealhash=101a8f…0ac386 uncles=0 txs=0 gas=0 fees=0 elapsed=195.735µs
+INFO [03-12|08:56:26.575] Generating DAG in progress               epoch=1 percentage=7  elapsed=11.165s
+INFO [03-12|08:56:27.913] Generating DAG in progress               epoch=1 percentage=8  elapsed=12.503s
+INFO [03-12|08:56:29.103] Generating DAG in progress               epoch=1 percentage=9  elapsed=13.693s
+```
+此时已经开始出块：
+```bash
+> eth
+{
+  accounts: ["0xade1fafd8b3f0c902b06dfac9bf9186c3d5a3a3b"],
+  blockNumber: 3,
+  coinbase: "0xade1fafd8b3f0c902b06dfac9bf9186c3d5a3a3b",
+```

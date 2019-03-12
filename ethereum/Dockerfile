@@ -16,9 +16,10 @@ FROM alpine:latest
 
 WORKDIR /ethereum/
 
-RUN apk add --no-cache ca-certificates \
+RUN apk add --no-cache ca-certificates
 
 COPY --from=eth_builder /go/src/github.com/ethereum/go-ethereum/genesis.json /ethereum/
+
 COPY --from=eth_builder /go/src/github.com/ethereum/go-ethereum/build/bin/* /usr/local/bin/
 
 RUN geth init /ethereum/genesis.json

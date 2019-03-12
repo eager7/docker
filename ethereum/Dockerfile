@@ -16,7 +16,7 @@ FROM alpine:latest
 
 WORKDIR /ethereum/
 
-VOLUME /ethereum/
+#VOLUME /ethereum/
 
 RUN apk add --no-cache ca-certificates \
     && chmod 777 /ethereum/ -R

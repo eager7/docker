@@ -18,8 +18,9 @@ clean:
 	docker-compose rm
 
 dist_clean:
-	-docker rmi $$(docker images | grep "none" | awk '{print $$3}')
 	-docker stop `docker ps -a -q`
+	-docker rm `docker ps -a -q`
+	-docker rmi $$(docker images | grep "none" | awk '{print $$3}')
 	-docker rmi ${repository}
-	-docker rmi builder:v1
+	-docker rmi eth_builder:v1
 

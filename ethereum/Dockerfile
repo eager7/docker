@@ -16,6 +16,8 @@ FROM alpine:latest
 
 WORKDIR /ethereum/
 
+VOLUME /ethereum/
+
 RUN apk add --no-cache ca-certificates \
     && chmod 777 /ethereum/ -R
 
@@ -25,6 +27,6 @@ COPY --from=eth_builder /go/src/github.com/ethereum/go-ethereum/build/bin/* /usr
 
 EXPOSE 8545 8546 30303 30303/udp
 
-RUN geth init /ethereum/genesis.json
+RUN geth --datadir /ethereum init /ethereum/genesis.json
 
-ENTRYPOINT [""]
+ENTRYPOINT ["geth --networkid 13141 --datadir /ethereum --rpc --rpcapi db,eth,net,web3,personal"]

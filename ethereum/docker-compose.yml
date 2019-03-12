@@ -11,5 +11,6 @@ services:
     ports:
       - 8555:8545
     expose:
-      - 30303
-      - 30303/udp
+      - 30304:30303
+      - 30304/udp:30303/udp
+    command: geth init /ethereum/genesis.json && geth --networkid 13141 --datadir /ethereum --rpc --rpcapi db,eth,net,web3,personal

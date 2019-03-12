@@ -16,15 +16,18 @@ FROM alpine:latest
 
 WORKDIR /ethereum/
 
-#VOLUME /ethereum/
+VOLUME /ethereum/
 
-RUN apk add --no-cache ca-certificates
+RUN apk add --no-cache ca-certificates \
+    && chmod 777 /ethereum/ -R
 
 COPY --from=eth_builder /go/src/github.com/ethereum/genesis.json /ethereum/
 
 COPY --from=eth_builder /go/src/github.com/ethereum/go-ethereum/build/bin/* /usr/local/bin/
 
 EXPOSE 8545 8546 30303 30303/udp
+
+RUN geth --datadir /ethereum init /ethereum/genesis.json
 
 # 空命令可以在外部用run执行自定义命令，真正执行命令放到docker-compose中
 ENTRYPOINT [""]

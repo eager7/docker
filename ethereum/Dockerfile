@@ -27,6 +27,5 @@ COPY --from=eth_builder /go/src/github.com/ethereum/go-ethereum/build/bin/* /usr
 
 EXPOSE 8545 8546 30303 30303/udp
 
-RUN geth --datadir /ethereum init /ethereum/genesis.json
-
+# 空命令可以在外部用run执行自定义命令，真正执行命令放到docker-compose中
 ENTRYPOINT [""]

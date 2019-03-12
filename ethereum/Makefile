@@ -11,7 +11,7 @@ builder:
 	docker build --target builder -t eth_builder:v1 ./
 
 run:
-	docker-compose up 
+	docker-compose up -d
 
 clean:
 	docker-compose stop

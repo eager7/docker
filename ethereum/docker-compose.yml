@@ -7,7 +7,7 @@ services:
       ./
     container_name: eos_docker_tools
     volumes:
-      - ./:/ethereum
+      - ./ethereum:/ethereum
     ports:
       - 8555:8545
       - 30304:30303

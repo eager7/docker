@@ -1,21 +1,22 @@
 .PHONY: all run clean dist_clean
 
 repository:="plainchant/ethereum:golang"
+name:=ethereum_private
 
 default: all
 
 all:
-	docker-compose build 
+	docker build  -t repository ./
 
 builder:
 	docker build --target builder -t eth_builder:v1 ./
 
 run:
-	docker-compose up -d
+	docker run -d -name $name geth --networkid 13141 --datadir /ethereum --rpc --rpcapi db,eth,net,web3,personal
 
 clean:
-	docker-compose stop
-	docker-compose rm
+	docker stop $name
+	docker rm $name
 
 dist_clean:
 	-docker stop `docker ps -a -q`

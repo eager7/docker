@@ -11,4 +11,11 @@ docker-compose up -d
 Creating eos_docker_tools ... done
 ```
 
-#### 
+#### 开启挖矿
+程序默认是没有开启挖矿功能的，我们需要添加一个账户并且开始挖矿：
+进入容器：
+```bash
+➜  ~ docker exec -it ethereum_private sh
+/ethereum # geth attach --datadir /ethereum/ 
+```
+查询状态：

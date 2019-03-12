@@ -3,7 +3,7 @@ version: "3"
 services:
   ethereum:
     image: plainchant/ethereum:golang
-    build:
+    build: # docker-compose build .
       ./
     container_name: ethereum_private
 #    volumes:
@@ -11,4 +11,4 @@ services:
     ports:
       - 8555:8545
       - 30304:30303
-    command: geth --networkid 13141 --datadir /ethereum --rpc --rpcapi db,eth,net,web3,personal
+    command: geth --networkid 13141 --datadir /ethereum --rpc --rpcapi db,eth,net,web3,personal # docker-compose up -d

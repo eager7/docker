@@ -1,0 +1,1 @@
+nohup geth --datadir ./ --networkid 2048 --rpc --rpcport 4201 --rpcapi "db,eth,net,web3,personal" --port 30304 --mine --miner.threads 1 --miner.etherbase 0x0c856999af6af6cbfdaa708bbebf9b7afc8f2894  > /tmp/private.log 2>&1 &
